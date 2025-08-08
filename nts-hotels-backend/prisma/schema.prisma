@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Hotel {
+  id            Int       @id @default(autoincrement())
+  name          String
+  city          String
+  address       String?
+  stars         Int
+  pricePerNight Decimal    @db.Decimal(10, 2)
+  amenities     String[]
+  images        String[]
+  availableFrom DateTime?
+  availableTo   DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
